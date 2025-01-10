@@ -1,5 +1,7 @@
+const professionalData = require("../backend/user.json");
+
 const helloRoute = (req, res) => {
-  res.send("Hello server route...");
+  res.json(professionalData);
 };
 
 module.exports = {
