@@ -6,7 +6,7 @@ async function apiFetch(url) {
 }
 
 const getData = async () => {
-  const data = await apiFetch("http://localhost:3000");
+  const data = await apiFetch("https://web-services-cse341.onrender.com/");
   console.log(data);
   // displayAllData(data);
 };
