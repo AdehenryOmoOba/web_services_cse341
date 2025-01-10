@@ -6,8 +6,11 @@ async function apiFetch(url) {
   return data;
 }
 
+// const apiURL = "http://localhost:3000";
+const apiURL = "https://web-services-cse341.onrender.com/";
+
 const getData = async () => {
-  const data = await apiFetch("http://localhost:3000");
+  const data = await apiFetch(apiURL);
   displayAllData(data[0]);
 };
 
