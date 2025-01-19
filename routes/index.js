@@ -1,6 +1,5 @@
 const router = require("express").Router();
-
-const controlers = require("../controlers/week1");
+const controlers = require("../week1/contacts/controllers");
 
 router.get("/", controlers.helloRoute);
 
