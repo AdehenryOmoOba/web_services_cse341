@@ -1,9 +1,9 @@
 const ObjectId = require("mongodb").ObjectId;
-const userData = require("../../backend/user.json");
+const professionalData = require("../../nathanBirch.json");
 const mongodb = require("./db");
 
 const nathanBirchData = (req, res) => {
-  res.json(userData);
+  res.json(professionalData);
 };
 
 const getAll = async (req, res) => {
@@ -61,8 +61,80 @@ const getSingle = async (req, res) => {
   }
 };
 
+// create controller for createUser, updateUser, deleteUser
+const createUser = async (req, res) => {
+  try {
+    const user = req.body;
+    const result = await mongodb
+      .getDb()
+      .db()
+      .collection("user")
+      .insertOne(user);
+    res.setHeader("Content-Type", "application/json");
+    res.status(201).json(result.ops[0]);
+  } catch (error) {
+    console.error("Error in createUser:", error);
+    res.status(500).json({
+      message: "Internal server error",
+      error: error.message,
+    });
+  }
+};
+
+const updateUser = async (req, res) => {
+  try {
+    const userId = new ObjectId(req.params.id);
+    const user = req.body;
+    const result = await mongodb
+      .getDb()
+      .db()
+      .collection("user")
+      .updateOne({ _id: userId }, { $set: user });
+
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).json({ message: "User updated successfully" });
+  } catch (error) {
+    console.error("Error in updateUser:", error);
+    res.status(500).json({
+      message: "Internal server error",
+      error: error.message,
+    });
+  }
+};
+
+const deleteUser = async (req, res) => {
+  try {
+    const userId = new ObjectId(req.params.id);
+    const result = await mongodb
+      .getDb()
+      .db()
+      .collection("user")
+      .deleteOne({ _id: userId });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.error("Error in deleteUser:", error);
+    res.status(500).json({
+      message: "Internal server error",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   nathanBirchData,
   getAll,
   getSingle,
+  createUser,
+  updateUser,
+  deleteUser,
 };

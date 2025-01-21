@@ -1,16 +1,3 @@
-// const express = require("express");
-// const cors = require("cors");
-// const app = express();
-// const router = require("../../routes");
-// const port = 3000;
-
-// app.use(cors());
-// app.use("/", router);
-
-// app.listen(process.env.port || port, () => {
-//   console.log(`Server listeninig on port ${port}`);
-// });
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongodb = require("./db");
