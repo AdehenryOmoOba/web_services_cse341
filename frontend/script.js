@@ -6,8 +6,8 @@ async function apiFetch(url) {
   return data;
 }
 
-const apiURL = "http://localhost:8080/nathan";
-// const apiURL = "https://web-services-cse341.onrender.com/nathan";
+// const apiURL = "http://localhost:8080/nathan";
+const apiURL = "https://web-services-cse341.onrender.com/nathan";
 
 const getData = async () => {
   const data = await apiFetch(apiURL);

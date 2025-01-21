@@ -64,16 +64,24 @@ const getSingle = async (req, res) => {
 // create controller for createUser, updateUser, deleteUser
 const createUser = async (req, res) => {
   try {
-    const user = req.body;
+    const user = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      favoriteColor: req.body.favoriteColor,
+      birthday: req.body.birthday,
+    };
+
     const result = await mongodb
       .getDb()
       .db()
       .collection("user")
       .insertOne(user);
+
     res.setHeader("Content-Type", "application/json");
-    res.status(201).json(result.ops[0]);
+    res.status(201).json(result);
   } catch (error) {
-    console.error("Error in createUser:", error);
+    console.error("Error in createUser:", error.message);
     res.status(500).json({
       message: "Internal server error",
       error: error.message,
