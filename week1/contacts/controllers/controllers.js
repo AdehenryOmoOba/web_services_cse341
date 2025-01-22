@@ -1,6 +1,6 @@
 const ObjectId = require("mongodb").ObjectId;
-const professionalData = require("../../nathanBirch.json");
-const mongodb = require("./db");
+const professionalData = require("../../../nathanBirch.json");
+const mongodb = require("../database/db");
 
 const nathanBirchData = (req, res) => {
   //#swagger.tags = ['Nathan Birch']
