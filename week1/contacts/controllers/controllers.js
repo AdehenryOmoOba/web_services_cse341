@@ -9,7 +9,7 @@ const nathanBirchData = (req, res) => {
 
 const getAll = async (req, res) => {
   //#swagger.tags = ['Contacts']
-  const result = await mongodb.getDb().db().collection("user").find();
+  const result = await mongodb.getDb().db().collection("contact").find();
 
   result
     .toArray()
@@ -43,7 +43,7 @@ const getSingle = async (req, res) => {
     const result = await mongodb
       .getDb()
       .db()
-      .collection("user")
+      .collection("contact")
       .find({ _id: userId });
 
     const users = await result.toArray();
@@ -79,7 +79,7 @@ const createUser = async (req, res) => {
     const result = await mongodb
       .getDb()
       .db()
-      .collection("user")
+      .collection("contact")
       .insertOne(user);
 
     res.setHeader("Content-Type", "application/json");
@@ -101,7 +101,7 @@ const updateUser = async (req, res) => {
     const result = await mongodb
       .getDb()
       .db()
-      .collection("user")
+      .collection("contact")
       .updateOne({ _id: userId }, { $set: user });
 
     if (result.matchedCount === 0) {
@@ -126,7 +126,7 @@ const deleteUser = async (req, res) => {
     const result = await mongodb
       .getDb()
       .db()
-      .collection("user")
+      .collection("contact")
       .deleteOne({ _id: userId });
 
     if (result.deletedCount === 0) {

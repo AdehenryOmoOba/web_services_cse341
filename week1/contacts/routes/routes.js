@@ -1,5 +1,5 @@
 const express = require("express");
-const userController = require("../controllers");
+const userController = require("../controllers/controllers");
 const router = express.Router();
 
 router.use("/", require("./swagger"));

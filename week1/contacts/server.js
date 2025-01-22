@@ -1,7 +1,7 @@
 const app = require("express")();
 const bodyParser = require("body-parser");
-const mongodb = require("./db");
-const contactsRouter = require("./routes");
+const mongodb = require("./database/db");
+const contactsRouter = require("./routes/routes");
 
 const port = process.env.PORT || 8080;
 
