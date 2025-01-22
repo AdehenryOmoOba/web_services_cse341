@@ -3,10 +3,12 @@ const professionalData = require("../../nathanBirch.json");
 const mongodb = require("./db");
 
 const nathanBirchData = (req, res) => {
+  //#swagger.tags = ['Nathan Birch']
   res.json(professionalData);
 };
 
 const getAll = async (req, res) => {
+  //#swagger.tags = ['Contacts']
   const result = await mongodb.getDb().db().collection("user").find();
 
   result
@@ -25,6 +27,7 @@ const getAll = async (req, res) => {
 };
 
 const getSingle = async (req, res) => {
+  //#swagger.tags = ['Contacts']
   try {
     // Check if ID exists
     if (!req.params.id) {
@@ -63,6 +66,7 @@ const getSingle = async (req, res) => {
 
 // create controller for createUser, updateUser, deleteUser
 const createUser = async (req, res) => {
+  //#swagger.tags = ['Contacts']
   try {
     const user = {
       firstName: req.body.firstName,
@@ -90,6 +94,7 @@ const createUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
+  //#swagger.tags = ['Contacts']
   try {
     const userId = new ObjectId(req.params.id);
     const user = req.body;
@@ -115,6 +120,7 @@ const updateUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
+  //#swagger.tags = ['Contacts']
   try {
     const userId = new ObjectId(req.params.id);
     const result = await mongodb
