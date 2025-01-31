@@ -7,7 +7,7 @@ const homeRouter = require("./routes/homeRoute.js");
 const nathanRouter = require("./routes/nathanRoute.js");
 const swaggerRouter = require("./routes/swagger.js");
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 9090;
 
 app
   .use(bodyParser.json())
