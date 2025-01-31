@@ -5,8 +5,7 @@ const doc = {
     title: "Mini Blog",
     description: "Mini Blog API",
   },
-  host: "https://cse341-miniblog.onrender.com",
-  // host: "localhost:8080",
+  host: "cse341-miniblog.onrender.com",
   scheme: ["http", "https"],
 };
 
