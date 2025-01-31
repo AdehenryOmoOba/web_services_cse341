@@ -4,7 +4,8 @@ const mongodb = require("../database/db");
 
 const nathanBirchData = (req, res) => {
   //#swagger.tags = ['Nathan Birch']
-  res.json(professionalData);
+  res.setHeader("Content-Type", "application/json");
+  res.status(200).json(professionalData);
 };
 
 const getAll = async (req, res) => {
@@ -64,7 +65,6 @@ const getSingle = async (req, res) => {
   }
 };
 
-// create controller for createUser, updateUser, deleteUser
 const createUser = async (req, res) => {
   //#swagger.tags = ['Contacts']
   try {

@@ -1,0 +1,112 @@
+[
+  {
+    "_id": "679371c1d503bddb70e93f2d",
+    "username": "jsmith_admin",
+    "email": "john.smith@example.com",
+    "password": "adminPass123",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "role": "admin",
+    "firstName": "John",
+    "lastName": "Smith",
+    "bio": "Administrator of the blog."
+  },
+  {
+    "_id": "679371c1d503bddb70e93f2f",
+    "username": "emily_parker",
+    "email": "emily.parker@example.com",
+    "password": "creatorPass123",
+    "createdAt": "2023-02-15T00:00:00Z",
+    "role": "creator",
+    "firstName": "Emily",
+    "lastName": "Parker",
+    "bio": "Passionate about writing."
+  },
+  {
+    "_id": "679371c1d503bddb70e93f31",
+    "username": "michael_chen",
+    "email": "michael.chen@example.com",
+    "password": "readerPass123",
+    "createdAt": "2023-03-10T00:00:00Z",
+    "role": "reader",
+    "firstName": "Michael",
+    "lastName": "Chen",
+    "bio": "Avid blog follower."
+  },
+  {
+    "_id": "679371c1d503bddb70e93f32",
+    "username": "sofia_rodriguez",
+    "email": "sofia.rodriguez@example.com",
+    "password": "readerPass123",
+    "createdAt": "2023-03-15T00:00:00Z",
+    "role": "reader",
+    "firstName": "Sofia",
+    "lastName": "Rodriguez",
+    "bio": "Loves to discover new blogs."
+  },
+  {
+    "_id": "679371c1d503bddb70e93f34",
+    "username": "olivia_baker",
+    "email": "olivia.baker@example.com",
+    "password": "creatorPass123",
+    "createdAt": "2023-04-10T00:00:00Z",
+    "role": "creator",
+    "firstName": "Olivia",
+    "lastName": "Baker",
+    "bio": "Enjoys sharing recipes."
+  },
+  {
+    "_id": "679371c1d503bddb70e93f2e",
+    "username": "david_wilson",
+    "email": "david.wilson@example.com",
+    "password": "creatorPass123",
+    "createdAt": "2023-02-01T00:00:00Z",
+    "role": "creator",
+    "firstName": "David",
+    "lastName": "Wilson",
+    "bio": "Loves to create engaging content."
+  },
+  {
+    "_id": "679371c1d503bddb70e93f30",
+    "username": "sarah_thompson",
+    "email": "sarah.thompson@example.com",
+    "password": "readerPass123",
+    "createdAt": "2023-03-01T00:00:00Z",
+    "role": "reader",
+    "firstName": "Sarah",
+    "lastName": "Thompson",
+    "bio": "Enjoys reading blog posts."
+  },
+  {
+    "_id": "679371c1d503bddb70e93f35",
+    "username": "lucas_mueller",
+    "email": "lucas.mueller@example.com",
+    "password": "readerPass123",
+    "createdAt": "2023-04-15T00:00:00Z",
+    "role": "reader",
+    "firstName": "Lucas",
+    "lastName": "Mueller",
+    "bio": "Loves to read about travel."
+  },
+  {
+    "_id": "679371c1d503bddb70e93f33",
+    "username": "james_kumar",
+    "email": "james.kumar@example.com",
+    "password": "creatorPass123",
+    "createdAt": "2023-04-01T00:00:00Z",
+    "role": "creator",
+    "firstName": "James",
+    "lastName": "Kumar",
+    "bio": "Writes about technology."
+  },
+  {
+    "_id": "679371c1d503bddb70e93f36",
+    "username": "emma_anderson",
+    "email": "emma.anderson@example.com",
+    "password": "readerPass123",
+    "createdAt": "2023-04-20T00:00:00Z",
+    "role": "reader",
+    "firstName": "Emma",
+    "lastName": "Anderson",
+    "bio": "Enjoys lifestyle blogs."
+  }
+]

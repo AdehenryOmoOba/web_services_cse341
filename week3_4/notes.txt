@@ -1,0 +1,118 @@
+
+### 1. Get all posts and their comments
+```javascript
+const getAllPostsWithComments = async (req, res) => {
+  try {
+    const posts = await mongodb.getDb().db().collection("posts").aggregate([
+      {
+        $lookup: {
+          from: "comments",
+          localField: "_id",
+          foreignField: "post",
+          as: "comments"
+        }
+      }
+    ]).toArray();
+
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).json(posts);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+```
+
+
+### 2. Get a single post and its comments
+```javascript
+const getPostWithComments = async (req, res) => {
+  try {
+    const postId = req.params.id;
+
+    const post = await mongodb.getDb().db().collection("posts").aggregate([
+      { $match: { _id: ObjectId(postId) } },
+      {
+        $lookup: {
+          from: "comments",
+          localField: "_id",
+          foreignField: "post",
+          as: "comments"
+        }
+      }
+    ]).toArray();
+
+    if (post.length === 0) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).json(post[0]);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+```
+
+
+
+### 3. Create a post
+```javascript
+const createPost = async (req, res) => {
+  try {
+    const newPost = req.body; // Assuming the post data is sent in the request body
+    const result = await mongodb.getDb().db().collection("posts").insertOne(newPost);
+
+    res.setHeader("Content-Type", "application/json");
+    res.status(201).json({ message: "Post created", postId: result.insertedId });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+```
+
+
+
+### 4. Edit a post
+```javascript
+const editPost = async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const updatedPost = req.body; // Assuming the updated post data is sent in the request body
+
+    const result = await mongodb.getDb().db().collection("posts").updateOne(
+      { _id: ObjectId(postId) },
+      { $set: updatedPost }
+    );
+
+    if (result.modifiedCount === 0) {
+      return res.status(404).json({ message: "Post not found or no changes made" });
+    }
+
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).json({ message: "Post updated" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+```
+
+
+### 5. Delete a post
+```javascript
+const deletePost = async (req, res) => {
+  try {
+    const postId = req.params.id;
+
+    const result = await mongodb.getDb().db().collection("posts").deleteOne({ _id: ObjectId(postId) });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).json({ message: "Post deleted" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+```
