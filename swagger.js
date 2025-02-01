@@ -5,8 +5,9 @@ const doc = {
     title: "Mini Blog",
     description: "Mini Blog API",
   },
-  host: "cse341-miniblog.onrender.com",
-  scheme: ["https"],
+  // host: "cse341-miniblog.onrender.com",
+  host: "localhost:8080",
+  scheme: ["https", "https"],
 };
 
 const outputFile = "./swagger.json";

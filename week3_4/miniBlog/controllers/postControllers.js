@@ -71,6 +71,20 @@ const createPost = async (req, res) => {
       comments: req.body.comments,
     };
 
+    if (!post.title) {
+      return res.status(400).json({ message: "Post title field is required" });
+    }
+
+    if (!post.content) {
+      return res
+        .status(400)
+        .json({ message: "Post content field is required" });
+    }
+
+    if (!post.author) {
+      return res.status(400).json({ message: "Post author field is required" });
+    }
+
     const result = await mongodb
       .getDb()
       .db()
@@ -91,17 +105,35 @@ const editPost = async (req, res) => {
   try {
     const postId = req.params.id;
 
+    // Validate post id is valid ObjectId
+    if (!ObjectId.isValid(postId)) {
+      return res.status(400).json({ message: "Invalid post id" });
+    }
+
     const post = {
       title: req.body.title,
       content: req.body.content,
       tags: req.body.tags,
     };
 
+    // If post tags field is present, validate it is not empty array
+    if ((post.tags && !Array.isArray(post.tags)) || post.tags.length === 0) {
+      return res
+        .status(400)
+        .json({ message: "Post tags must be a non-empty array" });
+    }
+
+    const updatedPost = {};
+
+    if (post.title) updatedPost.title = post.title;
+    if (post.content) updatedPost.content = post.content;
+    if (post.tags) updatedPost.tags = post.tags;
+
     const result = await mongodb
       .getDb()
       .db()
       .collection("post")
-      .updateOne({ _id: new ObjectId(postId) }, { $set: post });
+      .updateOne({ _id: new ObjectId(postId) }, { $set: updatedPost });
 
     if (result.matchedCount === 0) {
       return res.status(404).json({ message: "Post not found" });

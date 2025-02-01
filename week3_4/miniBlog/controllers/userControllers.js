@@ -69,6 +69,20 @@ const createUser = async (req, res) => {
         .json({ message: "Email and password fields are required" });
     }
 
+    // verify email format with regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(req.body.email)) {
+      return res.status(400).json({ message: "Invalid email format" });
+    }
+
+    // Check if length of username is less than 5 or greater than 20
+    if (!req.body.username || req.body.username.length < 5) {
+      return res.status(400).json({
+        message:
+          "Username is required and should be at least 5 characters long",
+      });
+    }
+
     const user = {
       username: req.body.username,
       email: req.body.email,
@@ -117,8 +131,11 @@ const editUser = async (req, res) => {
   try {
     const userId = req.params.id;
 
-    if (!userId) {
-      return res.status(400).json({ message: "Please provide user Id" });
+    // Check if length of username is less than 5 or greater than 20
+    if (req.body.username.length < 5 || req.body.username.length > 20) {
+      return res.status(400).json({
+        message: "Username should be between 5 and 20 characters",
+      });
     }
 
     const user = {
@@ -129,12 +146,21 @@ const editUser = async (req, res) => {
       bio: req.body.bio,
     };
 
+    const updatedUser = {};
+
+    if (user.username) updatedUser.username = user.username;
+    if (user.password) updatedUser.password = user.password;
+    if (user.firstName) updatedUser.firstName = user.firstName;
+    if (user.lastName) updatedUser.lastName = user.lastName;
+    if (user.bio) updatedUser.bio = user.bio;
+
     const result = await mongodb
       .getDb()
       .db()
       .collection("user")
-      .updateOne({ _id: new ObjectId(userId) }, { $set: user });
+      .updateOne({ _id: new ObjectId(userId) }, { $set: updatedUser });
 
+    // Check if the user with provided ID was modified
     if (result.matchedCount === 0) {
       return res.status(404).json({ message: "User not found" });
     }
