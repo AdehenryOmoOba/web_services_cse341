@@ -5,10 +5,10 @@
     "description": "Mini Blog API",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "cse341-miniblog.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "http", "https"
   ],
   "paths": {
     "/": {
@@ -411,7 +411,7 @@
     }
   },
   "scheme": [
-    "https",
+    "http",
     "https"
   ]
 }
