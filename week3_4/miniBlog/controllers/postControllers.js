@@ -90,6 +90,16 @@ const createPost = async (req, res) => {
       return res.status(400).json({ message: "Invalid post author" });
     }
 
+    // Validate tags and comments fields are arrays
+    if (
+      (post.tags && !Array.isArray(post.tags)) ||
+      (post.comments && !Array.isArray(post.comments))
+    ) {
+      return res
+        .status(400)
+        .json({ message: "Tags and comments must be arrays" });
+    }
+
     const result = await mongodb
       .getDb()
       .db()
