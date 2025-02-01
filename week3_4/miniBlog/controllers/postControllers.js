@@ -85,6 +85,11 @@ const createPost = async (req, res) => {
       return res.status(400).json({ message: "Post author field is required" });
     }
 
+    // Validate post author field is a valid ObjectId
+    if (!ObjectId.isValid(post.author)) {
+      return res.status(400).json({ message: "Invalid post author" });
+    }
+
     const result = await mongodb
       .getDb()
       .db()
