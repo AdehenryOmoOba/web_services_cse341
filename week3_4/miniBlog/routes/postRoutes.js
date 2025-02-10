@@ -6,6 +6,7 @@ const {
   editPost,
   deletePost,
 } = require("../controllers/postControllers.js");
+const { isAuthenticated } = require("../isAuth.js");
 
 // GET all posts
 router.get("/posts", getAllPostsWithComments);
@@ -14,12 +15,12 @@ router.get("/posts", getAllPostsWithComments);
 router.get("/post/:id", getPostWithComments);
 
 // Create a post
-router.post("/post", createPost);
+router.post("/post", isAuthenticated, createPost);
 
 // Edit a post
-router.put("/post/:id", editPost);
+router.put("/post/:id", isAuthenticated, editPost);
 
 // Delete a post
-router.delete("/post/:id", deletePost);
+router.delete("/post/:id", isAuthenticated, deletePost);
 
 module.exports = router;
