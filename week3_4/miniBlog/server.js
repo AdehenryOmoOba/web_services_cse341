@@ -99,20 +99,6 @@ app.get("/logout", (req, res) => {
   });
 });
 
-// app.get(
-//   "/auth/github",
-//   passport.authenticate("github", { scope: ["user:email"] })
-// );
-
-// app.get("/login_failed", (req, res) => {
-//   res.status(402).json({ message: "Login failed" });
-// });
-
-// app.get("/profile", isAuthenticated, (req, res) => {
-//   res.json(`Welcome ${req.user?.displayName}!`);
-// });
-// 33;
-
 mongodb.initDb((err) => {
   if (err) {
     console.log(err);
